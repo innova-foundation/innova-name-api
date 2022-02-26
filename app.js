@@ -1,20 +1,21 @@
 //
-// Copyright (c) 2021 Carsen Klock for use with Denarius (D)
+// Copyright (c) 2021 Carsen Klock
+// Copyright (c) 2022 CircuitBreaker
 //
 var express = require("express");
 var dns = require("dns");
 const { Resolver } = require('dns');
 var app = express();
 
-app.listen(3337, () => {
- console.log("Denarius Name API running on port 3337");
+app.listen(6337, () => {
+ console.log("Innova Name API running on port 6337");
 });
 
-//Set the Denarius Public DNS Servers
+//Set the Innova Public DNS Servers
 const resolver = new Resolver();
-resolver.setServers(['107.152.32.30','192.3.62.20']);
+resolver.setServers(['140.82.28.21','140.82.36.129']);
 
-// Denarius Name API Serve
+// Innova Name API Serve
 app.get('/name/', function(req, res) {
     var request = req.param('req');
 
@@ -25,7 +26,7 @@ app.get('/name/', function(req, res) {
         console.log('address request: %j %j', addresses, request);
         if (typeof addresses != 'undefined') {
             reqip = addresses[0];
-            res.send(reqip); //outputs requested IP from Denarius DNS Servers
+            res.send(reqip); //outputs requested IP from Innova DNS Servers
         }
         if (typeof addresses == 'undefined') {
             res.send('Invalid Request');
